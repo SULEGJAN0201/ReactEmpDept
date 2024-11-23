@@ -1,0 +1,120 @@
+.create-button {
+    margin-bottom: 2rem;
+    float: right;
+    width: auto;
+    transition: all 0.3s ease;
+}
+
+.create-button .ant-btn {
+    width: auto;
+}
+
+.department-form,
+.employee-form{
+    padding: 10px;
+}
+
+.responsive-table-container {
+    padding: 20px;
+}
+
+.employee-heading,
+.department-heading {
+    color: white;
+    margin-bottom: 20px;
+}
+
+.table-wrapper {
+    overflow-x: auto;
+}
+
+.responsive-table .ant-table {
+    font-size: 14px;
+}
+
+.ant-table-wrapper .ant-table-tbody > tr > td {
+    background-color: black !important;
+    color: white !important;
+}
+
+.ant-table-wrapper table {
+    border: none !important;
+    border-spacing: 0 !important;
+    border-collapse: collapse !important;
+}
+
+::placeholder {
+    color: #898989 !important;
+}
+
+@media (max-width: 768px) {
+    .ant-drawer  {
+        width: 100% !important;
+        height: 100% !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .create-button {
+        float: none;
+        width: 100%;
+        text-align: left;
+    }
+
+    .create-button .ant-btn {
+        width: 100%;
+        opacity: 0.7;
+    }
+}
+
+/*@media (max-width: 768px) {*/
+
+/*    !*.ant-table-wrapper table {*!*/
+/*    !*    border: none !important;*!*/
+/*    !*    border-spacing: 0 !important;*!*/
+/*    !*    border-collapse: collapse !important;*!*/
+/*    !*}*!*/
+
+
+/*    .responsive-table .ant-table-thead > tr {*/
+/*        display: none;*/
+/*    }*/
+
+
+/*    .responsive-table .ant-table-tbody > tr > td {*/
+/*        border: none !important;*/
+/*        padding: 8px;*/
+/*        text-align: left;*/
+/*    }*/
+
+
+/*    .responsive-table .ant-table-tbody > tr > td::before {*/
+/*        content: attr(data-label);*/
+/*        position: absolute;*/
+/*        left: 8px;*/
+/*        top: 8px;*/
+/*        font-weight: bold;*/
+/*        color: #888;*/
+/*    }*/
+
+/*    .ant-table td,*/
+/*    .ant-table th {*/
+/*        border: none !important;*/
+/*    }*/
+/*}*/
+
+@media (max-width: 768px) {
+    .responsive-table .ant-table-tbody > tr > td {
+        position: relative;
+        border: 1px solid #262626;
+        padding: 8px 12px;
+    }
+
+    .responsive-table .ant-table-tbody > tr > td::before {
+        content: attr(data-label);
+        display: block;
+        font-weight: bold;
+        color: #898989;
+        margin-bottom: 4px;
+    }
+}

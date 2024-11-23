@@ -1,0 +1,11 @@
+@media (max-width: 768px) {
+    .gradient-button {
+        width: auto;
+        display: block;
+        margin: 16px auto;
+    }
+}
+
+.arrow-icon {
+    margin-left: 8px;
+}
