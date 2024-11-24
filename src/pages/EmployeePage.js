@@ -234,16 +234,16 @@ const EmployeePage = () => {
             if (editingEmployee) {
                 const response= await employeeService.editEmployee(editingEmployee.id, employee);
                 if(response.status===200){
-                    message.success(response.message ||"Employee updated successfully.");
+                    message.success(response ||"Employee updated successfully.");
                 }else{
-                    message.error(response.message ||"Failed to update employees.");
+                    message.error(response ||"Failed to update employees.");
                 }
             } else {
                 const response= await employeeService.createEmployee(employee);
                 if(response.status===201){
-                    message.success(response.message || "Employee created successfully.");
+                    message.success(response || "Employee created successfully.");
                 }else{
-                    message.error(response.message ||"Failed to create employees.");
+                    message.error(response ||"Failed to create employees.");
                 }
             }
             fetchEmployees();
@@ -264,11 +264,12 @@ const EmployeePage = () => {
 
     const handleDelete = async (key) => {
         try {
-            const response= await employeeService.deleteEmployee(key);
+            const response = await employeeService.deleteEmployee(key);
             if(response.status===200){
-                message.success(response.message ||"Employee deleted successfully.");
+                console.log(response);
+                message.success(response.data ||"Employee deleted successfully.");
             }else{
-                message.error(response.message || "Failed to delete employee.");
+                message.error(response || "Failed to delete employee.");
             }
             fetchEmployees();
         } catch (error) {
