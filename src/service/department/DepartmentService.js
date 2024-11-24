@@ -15,8 +15,8 @@ const getDepartments = async () => {
 const createDepartment = async (departmentData) => {
     try {
         const payload = {
-            DepartmentCode: departmentData.code,
-            DepartmentName: departmentData.name,
+            departmentCode: departmentData.code,
+            departmentName: departmentData.name,
         };
         const response = await axios.post(API_ENDPOINTS.CREATE_DEPARTMENT, payload);
         return response.data;
@@ -29,8 +29,8 @@ const createDepartment = async (departmentData) => {
 const editDepartment = async (departmentId, departmentData) => {
     try {
         const payload = {
-            DepartmentCode: departmentData.code,
-            DepartmentName: departmentData.name,
+            departmentCode: departmentData.code,
+            departmentName: departmentData.name,
         };
         const response = await axios.put(`${API_ENDPOINTS.EDIT_DEPARTMENT}/${departmentId}`, payload);
         return response.data;

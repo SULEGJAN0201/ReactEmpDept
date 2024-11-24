@@ -156,7 +156,7 @@ const DepartmentPage = () => {
         setLoading(true);
         try {
             const data = await departmentService.getDepartments();
-            setDepartments(data.map((item, index) => ({ ...item, key: index + 1 })));
+            setDepartments(data);
         } catch (error) {
             message.error("Failed to fetch departments.");
         } finally {
@@ -173,7 +173,7 @@ const DepartmentPage = () => {
     const handleSave = async (department) => {
         try {
             if (editingDepartment) {
-                const response= await departmentService.editDepartment(editingDepartment.id, department);
+                const response= await departmentService.editDepartment(editingDepartment.departmentId, department);
                 if(response.status===200){
                     message.success("Department updated successfully.");
                 }else{
@@ -198,6 +198,7 @@ const DepartmentPage = () => {
 
     const handleEdit = (record) => {
         setEditingDepartment(record);
+        console.log(record);
         showDrawer();
     };
 
@@ -216,8 +217,8 @@ const DepartmentPage = () => {
     };
 
     const columns = [
-        { title: "Department Code", dataIndex: "DepartmentCode" },
-        { title: "Department Name", dataIndex: "DepartmentName" },
+        { title: "Department Code", dataIndex: "departmentCode" },
+        { title: "Department Name", dataIndex: "departmentName" },
         {
             title: "Actions",
             render: (_, record) => (
@@ -234,7 +235,7 @@ const DepartmentPage = () => {
                         title="Delete the Department"
                         description="Are you sure to delete?"
                         icon={<QuestionCircleOutlined style={{ color: "red" }} />}
-                        onConfirm={() => handleDelete(record.DepartmentId)}
+                        onConfirm={() => handleDelete(record.departmentId)}
                         okText="Yes"
                         cancelText="No"
                         okButtonProps={{
