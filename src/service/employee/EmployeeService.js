@@ -4,7 +4,7 @@ import {API_ENDPOINTS} from "../../const/API_ENDPOINTS";
 const getEmployees = async () => {
     try {
         const response = await axios.get(API_ENDPOINTS.GET_ALL_EMPLOYEES);
-        return response.data;
+        return response;
     } catch (error) {
         console.error('Error fetching employees:', error);
         throw error;

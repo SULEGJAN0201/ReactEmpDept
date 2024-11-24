@@ -198,7 +198,7 @@ const EmployeePage = () => {
             if(response.status === 200) {
                 setEmployees(response.data);
             }else{
-                message.error(response.message || "Failed to fetch employees.");
+                message.error(response || "Failed to fetch employees.");
                 setEmployees([]);
             }
 
@@ -215,7 +215,7 @@ const EmployeePage = () => {
             if(response.status===200){
                 setDepartments(response.data);
             }else{
-                message.error(response.message ||"Failed to fetch departments.");
+                message.error(response ||"Failed to fetch departments.");
                 setDepartments([])
             }
         } catch (error) {
@@ -277,12 +277,13 @@ const EmployeePage = () => {
     };
 
     const columns = [
-        { title: "First Name", dataIndex: "FirstName" },
-        { title: "Last Name", dataIndex: "LastName" },
-        { title: "Email", dataIndex: "EmailAddress" },
-        { title: "Age", dataIndex: "Age" },
-        { title: "DoB", dataIndex: "DateOfBirth" },
-        { title: "Department", dataIndex: "DepartmentId" },
+        { title: "First Name", dataIndex: "firstName" },
+        { title: "Last Name", dataIndex: "lastName" },
+        { title: "Email", dataIndex: "emailAddress" },
+        { title: "Age", dataIndex: "age" },
+        { title: "DoB", dataIndex: "dateOfBirth" },
+        { title: "Salary", dataIndex: "salary" },
+        { title: "Department", dataIndex: "departmentId" },
         {
             title: "Actions",
             render: (_, record) => (
@@ -300,7 +301,7 @@ const EmployeePage = () => {
                         title="Delete the Employee"
                         description="Are you sure to delete?"
                         icon={<QuestionCircleOutlined style={{ color: "red" }} />}
-                        onConfirm={() => handleDelete(record.EmployeeId)}
+                        onConfirm={() => handleDelete(record.employeeId)}
                         okText="Yes"
                         cancelText="No"
                         okButtonProps={{

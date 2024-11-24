@@ -19,7 +19,7 @@ const createDepartment = async (departmentData) => {
             departmentName: departmentData.name,
         };
         const response = await axios.post(API_ENDPOINTS.CREATE_DEPARTMENT, payload);
-        return response.data;
+        return response;
     } catch (error) {
         console.error('Error creating department:', error);
         throw error;
