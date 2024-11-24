@@ -11,9 +11,14 @@ const getDepartments = async () => {
     }
 };
 
+
 const createDepartment = async (departmentData) => {
     try {
-        const response = await axios.post(API_ENDPOINTS.CREATE_DEPARTMENT, departmentData);
+        const payload = {
+            DepartmentCode: departmentData.code,
+            DepartmentName: departmentData.name,
+        };
+        const response = await axios.post(API_ENDPOINTS.CREATE_DEPARTMENT, payload);
         return response.data;
     } catch (error) {
         console.error('Error creating department:', error);
@@ -23,13 +28,37 @@ const createDepartment = async (departmentData) => {
 
 const editDepartment = async (departmentId, departmentData) => {
     try {
-        const response = await axios.put(`${API_ENDPOINTS.EDIT_DEPARTMENT}/${departmentId}`, departmentData);
+        const payload = {
+            DepartmentCode: departmentData.code,
+            DepartmentName: departmentData.name,
+        };
+        const response = await axios.put(`${API_ENDPOINTS.EDIT_DEPARTMENT}/${departmentId}`, payload);
         return response.data;
     } catch (error) {
         console.error('Error editing department:', error);
         throw error;
     }
 };
+
+// const createDepartment = async (departmentData) => {
+//     try {
+//         const response = await axios.post(API_ENDPOINTS.CREATE_DEPARTMENT, departmentData);
+//         return response.data;
+//     } catch (error) {
+//         console.error('Error creating department:', error);
+//         throw error;
+//     }
+// };
+
+// const editDepartment = async (departmentId, departmentData) => {
+//     try {
+//         const response = await axios.put(`${API_ENDPOINTS.EDIT_DEPARTMENT}/${departmentId}`, departmentData);
+//         return response.data;
+//     } catch (error) {
+//         console.error('Error editing department:', error);
+//         throw error;
+//     }
+// };
 
 const deleteDepartment = async (departmentId) => {
     try {

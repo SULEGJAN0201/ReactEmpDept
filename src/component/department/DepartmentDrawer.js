@@ -35,26 +35,6 @@ const DepartmentForm = ({ initialValues, onSave, isEditing }) => {
                 <Input placeholder="Enter department name" />
             </Form.Item>
 
-            <Form.Item
-                label="Department Description"
-                name="description"
-            >
-                <Input.TextArea placeholder="Enter a brief description of the department" />
-            </Form.Item>
-
-            <Form.Item
-                label="Department Manager"
-                name="manager"
-                rules={[{ required: true, message: "Department Manager is required" }]}
-            >
-                <Select placeholder="Select a manager">
-                    <Select.Option value="manager1">Manager 1</Select.Option>
-                    <Select.Option value="manager2">Manager 2</Select.Option>
-                    <Select.Option value="manager3">Manager 3</Select.Option>
-                </Select>
-            </Form.Item>
-
-
             <Form.Item>
                 <GradientButton
                     name={isEditing ? "Update Department" : "Create Department"}

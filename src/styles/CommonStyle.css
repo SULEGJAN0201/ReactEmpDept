@@ -158,3 +158,6 @@ body {
     background-color: #1E1E1E !important;
 }
 
+.ant-drawer-content-wrapper{
+    width: 500px !important;
+}
