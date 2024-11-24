@@ -171,12 +171,12 @@
 //
 import React, { useEffect, useState } from "react";
 import { Drawer, Table, Popconfirm, message } from "antd";
-import EmployeeForm from "../component/employee/EmployeeForm";
+import EmployeeForm from "../component/employee/EmployeeDrawer";
 import GradientButton from "../component/common/GradientButton";
 import { DeleteOutlined, EditOutlined, QuestionCircleOutlined } from "@ant-design/icons";
 import moment from "moment";
-import employeeService from "../service/employeeService/EmployeeService";
-import departmentService from "../service/departmentService/DepartmentService";
+import employeeService from "../service/employee/EmployeeService";
+import departmentService from "../service/department/DepartmentService";
 import "./PageStyles.css";
 
 const EmployeePage = () => {

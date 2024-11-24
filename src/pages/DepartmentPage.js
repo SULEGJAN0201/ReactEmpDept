@@ -136,10 +136,10 @@
 //
 import React, { useEffect, useState } from "react";
 import { Drawer, Table, Popconfirm, message } from "antd";
-import DepartmentForm from "../component/department/DepartmentForm";
+import DepartmentForm from "../component/department/DepartmentDrawer";
 import GradientButton from "../component/common/GradientButton";
 import { DeleteOutlined, EditOutlined, QuestionCircleOutlined } from "@ant-design/icons";
-import departmentService from "../service/departmentService/DepartmentService";
+import departmentService from "../service/department/DepartmentService";
 import './PageStyles.css';
 
 const DepartmentPage = () => {
