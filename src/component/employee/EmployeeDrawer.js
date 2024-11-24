@@ -1,6 +1,7 @@
+
 import React, { useEffect } from "react";
 import { Form, Input, DatePicker, InputNumber, Select } from "antd";
-import moment from "moment";
+import dayjs from "dayjs";
 import GradientButton from "../common/GradientButton";
 
 const EmployeeForm = ({ initialValues, onSave, departments, isEditing }) => {
@@ -12,7 +13,7 @@ const EmployeeForm = ({ initialValues, onSave, departments, isEditing }) => {
     };
 
     const disabledDate = (current) => {
-        return current && current.isAfter(moment().endOf('day'));
+        return current && current.isAfter(dayjs().endOf('day'));
     };
 
     const onDobChange = (dob) => {
@@ -23,23 +24,55 @@ const EmployeeForm = ({ initialValues, onSave, departments, isEditing }) => {
     };
 
     const onFinish = (values) => {
+        const dateOfBirth = values.dateOfBirth?.toDate();
+        const age = calculateAge(dateOfBirth);
+    
+        if (age < 18 || age > 100) {
+            return form.setFields([
+                { name: 'dateOfBirth', errors: ['Employee must be between 18 and 100 years old.'] }
+            ]);
+        }
+    
         const formattedValues = {
             ...values,
-            dob: values.dob ? values.dob.toDate() : null, // Convert moment to plain date
+            dateOfBirth,
+            departmentId: values.departmentId,
+            age,
         };
-        const age = calculateAge(formattedValues.dob);
-        onSave({ ...formattedValues, age });
+        onSave(formattedValues);
+        form.resetFields(); // Reset form after successful submission
     };
 
+    // const onFinish = (values) => {
+    //     const formattedValues = {
+    //         ...values,
+    //         dateOfBirth: values.dateOfBirth ? values.dateOfBirth.toDate() : null, // Convert Day.js to plain date
+    //         departmentId: values.departmentId, // Rename for backend compatibility
+    //     };
+    //     const age = calculateAge(formattedValues.dateOfBirth);
+    //     onSave({ ...formattedValues, age });
+    // };
+
+    // useEffect(() => {
+    //     if (initialValues) {
+    //         form.setFieldsValue({
+    //             ...initialValues,
+    //             dateOfBirth: initialValues.dateOfBirth ? dayjs(initialValues.dateOfBirth) : null, // Convert to Day.js
+    //         });
+    //     }
+    // }, [initialValues, form]);
+    
     useEffect(() => {
         if (initialValues) {
-            const formattedInitialValues = {
+            form.setFieldsValue({
                 ...initialValues,
-                dob: initialValues.dob ? moment(initialValues.dob) : null, // Convert dob to moment
-            };
-            form.setFieldsValue(formattedInitialValues);
+                dateOfBirth: initialValues.dateOfBirth ? dayjs(initialValues.dateOfBirth) : null,
+            });
+        } else {
+            form.resetFields(); // Reset fields if there are no initial values
         }
     }, [initialValues, form]);
+
 
     return (
         <Form
@@ -73,7 +106,7 @@ const EmployeeForm = ({ initialValues, onSave, departments, isEditing }) => {
 
             <Form.Item
                 label="Email Address"
-                name="email"
+                name="emailAddress"
                 rules={[
                     { required: true, message: "Email is required" },
                     { type: "email", message: "Please enter a valid email" },
@@ -84,7 +117,7 @@ const EmployeeForm = ({ initialValues, onSave, departments, isEditing }) => {
 
             <Form.Item
                 label="Date of Birth"
-                name="dob"
+                name="dateOfBirth"
                 rules={[{ required: true, message: "Date of Birth is required" }]}
             >
                 <DatePicker
@@ -99,20 +132,19 @@ const EmployeeForm = ({ initialValues, onSave, departments, isEditing }) => {
                 label="Salary"
                 name="salary"
                 rules={[{ required: true, message: "Salary is required" }]}
-
             >
-                <InputNumber style={{ width: "100%" }} min={0}  placeholder="Enter employee salary" />
+                <InputNumber style={{ width: "100%" }} min={0} placeholder="Enter employee salary" />
             </Form.Item>
 
             <Form.Item
                 label="Department"
-                name="department"
+                name="departmentId"
                 rules={[{ required: true, message: "Department is required" }]}
             >
                 <Select placeholder="Select employee department">
                     {departments.map((dept) => (
-                        <Select.Option key={dept.key} value={dept.name}>
-                            {dept.name}
+                        <Select.Option key={dept.departmentId} value={dept.departmentId}>
+                            {dept.departmentName}
                         </Select.Option>
                     ))}
                 </Select>

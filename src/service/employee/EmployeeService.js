@@ -16,11 +16,11 @@ const createEmployee = async (employeeData) => {
         const payload = {
             firstName: employeeData.firstName,
             lastName: employeeData.lastName,
-            emailAddress: employeeData.email,
-            dateOfBirth: employeeData.dob,
+            emailAddress: employeeData.emailAddress,
+            dateOfBirth: employeeData.dateOfBirth,
             age: employeeData.age,
             salary: employeeData.salary,
-            departmentId: employeeData.department,
+            departmentId: employeeData.departmentId,
         };
 
         const response = await axios.post(API_ENDPOINTS.CREATE_EMPLOYEE, payload);
@@ -35,11 +35,11 @@ const editEmployee = async (employeeId, employeeData) => {
         const payload = {
             firstName: employeeData.firstName,
             lastName: employeeData.lastName,
-            emailAddress: employeeData.email,
-            dateOfBirth: employeeData.dob,
+            emailAddress: employeeData.emailAddress,
+            dateOfBirth: employeeData.dateOfBirth,
             age: employeeData.age,
             salary: employeeData.salary,
-            departmentId: employeeData.department,
+            departmentId: employeeData.departmentId,
         };
         const response = await axios.put(API_ENDPOINTS.EDIT_EMPLOYEE(employeeId), payload);
         return response;

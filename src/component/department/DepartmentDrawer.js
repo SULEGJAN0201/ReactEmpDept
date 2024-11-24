@@ -21,7 +21,7 @@ const DepartmentForm = ({ initialValues, onSave, isEditing }) => {
         >
             <Form.Item
                 label="Department Code"
-                name="code"
+                name="departmentCode"
                 rules={[{ required: true, message: "Department Code is required" }]}
             >
                 <Input placeholder="Enter department code" />
@@ -29,7 +29,7 @@ const DepartmentForm = ({ initialValues, onSave, isEditing }) => {
 
             <Form.Item
                 label="Department Name"
-                name="name"
+                name="departmentName"
                 rules={[{ required: true, message: "Department Name is required" }]}
             >
                 <Input placeholder="Enter department name" />

@@ -155,8 +155,8 @@ const DepartmentPage = () => {
     const fetchDepartments = async () => {
         setLoading(true);
         try {
-            const data = await departmentService.getDepartments();
-            setDepartments(data);
+            const response = await departmentService.getDepartments();
+            setDepartments(response.data);
         } catch (error) {
             message.error("Failed to fetch departments.");
         } finally {
@@ -207,9 +207,9 @@ const DepartmentPage = () => {
             const response=await departmentService.deleteDepartment(key);
             console.log(response);
             if(response.status===200){
-                message.success(response.message ||"Department deleted successfully.");
+                message.success(response ||"Department deleted successfully.");
             }else{
-            
+                 
                 message.error(response)
             }
             fetchDepartments();

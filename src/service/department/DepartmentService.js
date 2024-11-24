@@ -4,7 +4,7 @@ import {API_ENDPOINTS} from "../../const/API_ENDPOINTS";
 const getDepartments = async () => {
     try {
         const response = await axios.get(API_ENDPOINTS.GET_ALL_DEPARTMENTS);
-        return response.data;
+        return response;
     } catch (error) {
         console.error('Error fetching departments:', error);
         return error.response?.data;
@@ -15,8 +15,8 @@ const getDepartments = async () => {
 const createDepartment = async (departmentData) => {
     try {
         const payload = {
-            departmentCode: departmentData.code,
-            departmentName: departmentData.name,
+            departmentCode: departmentData.departmentCode,
+            departmentName: departmentData.departmentName,
         };
         const response = await axios.post(API_ENDPOINTS.CREATE_DEPARTMENT, payload);
         return response;
@@ -29,8 +29,8 @@ const createDepartment = async (departmentData) => {
 const editDepartment = async (departmentId, departmentData) => {
     try {
         const payload = {
-            departmentCode: departmentData.code,
-            departmentName: departmentData.name,
+            departmentCode: departmentData.departmentCode,
+            departmentName: departmentData.departmentName,
         };
         const response = await axios.put(API_ENDPOINTS.EDIT_DEPARTMENT(departmentId), payload);
         console.log(response);
