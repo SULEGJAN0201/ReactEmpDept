@@ -205,10 +205,12 @@ const DepartmentPage = () => {
     const handleDelete = async (key) => {
         try {
             const response=await departmentService.deleteDepartment(key);
+            console.log(response);
             if(response.status===200){
                 message.success(response.message ||"Department deleted successfully.");
             }else{
-                message.error(response.message)
+            
+                message.error(response)
             }
             fetchDepartments();
         } catch (error) {
